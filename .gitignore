@@ -1,3 +1,5 @@
+_pycache_/*
 .vscode/
 .vs/
 *.pyc
+*.cpython-37.pyc
