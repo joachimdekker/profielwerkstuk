@@ -1,5 +1,4 @@
 import math
-import line
 import typing
 import numpy as np
 
@@ -94,12 +93,26 @@ class Vector2D:
         return math.sqrt(self.x**2 + self.y**2)
     
     def dot(self, other: Vector2D):
+        """Multiply the two vectors using the dot product method
+
+        Multiply two vectors using the dot product.
+        The dot product represents the length of a casted vector on another vector.
+
+        Args: other - `vector` The vector to be multiplied.
+        """
         if(type(other) == Vector2D):
             return self.x*other.x + self.y*other.y
         else:
             raise TypeError(f"Type of other vector is not valid: '{type(other).__name__}' is not a valid Vector2D");
 
     def rotation(self, other=None):
+        """Calculate the rotation of one or two vectors
+
+        The rotation is calculated with the vector (1,0)
+        if other is None or omitted
+
+        Args: other - _optional_ 'Vector'
+        """
         if(type(other) == Vector2D):
             return math.acos((self @ other)/abs(self) * abs(other))
         elif(other == None):
