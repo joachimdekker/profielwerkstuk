@@ -26,7 +26,33 @@ class linline:
     
     @classmethod
     def fromVector(direction, location=Vector(0,0)):
+        rc = direction.y / direction.x
+        b = direction.x * location.y - direction.y * location.x
+        return linline(rc, b)
 
+    def intersect(self, other: linline) -> Vector.Vector:
+        """Calculate the point on which the two lines intersect
+        
+        The two lines intersect on one point. Intersect() calculates
+        that point and give back a vector.
+
+        Args:
+            other: a linline; the line that intersects
+        """
+        new_x = (other.b - self.b) / (self.rc - other.rc)
+        return Vector.Vector(new_x, self.calc(new_x))
+
+    def calc(self, x: float) -> float:
+        """Calculate the output with a given x value
+
+        The mathematical equivalent of f(x). Calc() calculates
+        the value that corresponds to the x value given.
+
+        Args:
+            x: a float; the x value for the value to be calculated
+        """
+        return self.rc * x + self.b
+        
     def __str__(self):
         return f"Linear Line: {self.rc}x + {self.b}"
     
